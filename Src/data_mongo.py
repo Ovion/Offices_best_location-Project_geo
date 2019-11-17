@@ -15,7 +15,7 @@ def count_values_subgroup (collection, group, subgroup):
         for gr in coll[group]:
             dicti[gr[subgroup]]= dicti.get(gr[subgroup],0)+1
     sort_dicti = sorted(dicti.items(), key=lambda kv: kv[1], reverse=True)        
-    return dicti
+    return sort_dicti
 
 def get_raised_dollar (company, exchange):
     '''Given a company and a dictionary of currency exchange rates returns the total amount '''
@@ -28,22 +28,16 @@ def get_raised_dollar (company, exchange):
         company['funding_rounds'] = None
     return dollars
 
-def get_set_location(company, collection):
-    indx = 0
-    try:
-        for gr in company['offices']:
-            if (gr['longitude']!= None) and (gr['latitude']!= None):
-                long = gr['longitude']
-                lat = gr['latitude']
-                loc = {
-                    'type':'Point',
-                    'coordinates':[float(long), float(lat)]
-                }
-                value = {"$set": {f"location {indx}": loc}}
-                collection.update_one(company, value)
-                indx +=1
-    except:
-        company['offices'] = None
+def get_location(company):
+
+    lon = company['offices']['longitude']
+    lat = company['offices']['latitude']
+    loc = {
+        'type':"Point",
+        'coordinates': [float(lon), float(lat)]
+    }
+    return loc
+
 
 
 
