@@ -1,6 +1,6 @@
 
 import requests
-from pymongo import MongoClient
+
 
 def currency_api(curr):
     '''
@@ -12,11 +12,7 @@ def currency_api(curr):
     return data
 
 
-def connect_collection (database, collection):
-    client = MongoClient()
-    db = client[database]
-    coll = db[collection]
-    return db, coll
+
 
 
 
