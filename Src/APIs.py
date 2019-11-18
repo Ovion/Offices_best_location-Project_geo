@@ -9,6 +9,7 @@ def currency_api(curr):
     url = f'https://api.exchangerate-api.com/v4/latest/{curr}'
     res = requests.get(url)
     data = res.json()
+
     return data
 
 

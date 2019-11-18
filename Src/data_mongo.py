@@ -1,5 +1,6 @@
 
 from pymongo import MongoClient
+import APIs
 
 def connect_collection (database, collection):
     client = MongoClient()
@@ -37,6 +38,10 @@ def get_location(company):
         'coordinates': [float(lon), float(lat)]
     }
     return loc
+
+def geopoint(lon, lat): 
+    return {"type": "Point", "coordinates": [lon,lat]}
+
 
 
 
