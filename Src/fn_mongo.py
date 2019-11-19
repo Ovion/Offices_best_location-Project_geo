@@ -1,6 +1,6 @@
 
 from pymongo import MongoClient
-import APIs
+
 
 def connect_collection (database, collection):
     client = MongoClient()
