@@ -6,7 +6,7 @@ def connect_collection (database, collection):
     client = MongoClient()
     db = client[database]
     coll = db[collection]
-    return db, coll
+    return coll
 
 
 def count_values_subgroup (collection, group, subgroup):
@@ -41,9 +41,6 @@ def get_location(company):
 
 def geopoint(lon, lat): 
     return {"type": "Point", "coordinates": [lon,lat]}
-
-
-
 
 
 

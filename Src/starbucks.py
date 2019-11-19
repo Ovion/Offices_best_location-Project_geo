@@ -10,7 +10,7 @@ starbucks = starbucks[starbucks.Latitude.apply(lambda x: type(x) in [int, np.int
 
 starbucks['Localization']=np.vectorize(dm.geopoint)(starbucks['Longitude'], starbucks['Latitude'])
 
-sbux_db, sbux_coll = dm.connect_collection('companies', 'starbucks')
+sbux_coll = dm.connect_collection('companies', 'starbucks')
 
 sbux_coll.insert_many(starbucks.to_dict('record'))
 

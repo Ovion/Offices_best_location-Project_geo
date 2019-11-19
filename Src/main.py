@@ -19,7 +19,7 @@ def main():
                     'SEK': 9.667363}}
     '''
     # Conexion
-    comps_db, comps_coll = dm.connect_collection('companies', 'companies')
+    comps_coll = dm.connect_collection('companies', 'companies')
 
     # Borrar las que hayan quebrado
     comps_coll.delete_many({'deadpooled_year':{'$gte':0}})
