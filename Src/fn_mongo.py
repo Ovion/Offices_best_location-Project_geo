@@ -42,5 +42,12 @@ def get_location(company):
 def geopoint(lon, lat): 
     return {"type": "Point", "coordinates": [lon,lat]}
 
+def find_offices_near(collection, lst_loc, query, radio):
+        return list(collection.find({'$and':[ query , {"location": { "$near": {"$geometry": lst_loc, "$maxDistance": radio}}}]})) 
+
+
+
+
+
 
 
