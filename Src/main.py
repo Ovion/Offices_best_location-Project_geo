@@ -37,8 +37,9 @@ def main():
         num_off = fm.find_offices_near(comps_coll, lst_loc[i], query1, radio)
         lst_num_offices.append(len(num_off))
         
-    df_comps['number offices'] = lst_num_offices
-
+    df_comps['number_offices_1'] = lst_num_offices
+    
+    df_comps['rank1'] = df_comps['number_offices_1'].rank(pct=True)
 
 
 

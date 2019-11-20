@@ -14,9 +14,9 @@ def get_variables_perefence_1 (pref_1):
                 ]}
     query3 = {'founded_year':{'$gte':2004}}
 
-    if pref_1 == 1:
+    if pref_1 == '1':
         return query1
-    elif pref_1 == 2:
+    elif pref_1 == '2':
         return query2
     else:
         return query3
