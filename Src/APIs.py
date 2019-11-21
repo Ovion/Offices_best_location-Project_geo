@@ -11,13 +11,3 @@ def currency_api(curr):
     data = res.json()
 
     return data
-
-
-
-
-
-
-
-
-
-
