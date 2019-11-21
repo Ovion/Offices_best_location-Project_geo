@@ -63,6 +63,8 @@ def main():
     df_comps['total_rank'] = df_comps.iloc[:, -3]*0.6 + \
         df_comps.iloc[:, -2]*0.3 + df_comps.iloc[:, -1]*0.1
 
+    df_comps = df_comps.sort_values(by=['total_rank'], ascending=False)
+
     mp.print_map(df_comps)
 
 
