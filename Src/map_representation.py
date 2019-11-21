@@ -17,7 +17,17 @@ def print_map(df):
     tech_coll = fm.connect_collection('companies', 'tech')
     techs = tech_coll.find({"offices.city": city})
 
-    map_city = folium.Map(location=[lat, lon], zoom_start=12)
+    map_city = folium.Map(location=[lat, lon], zoom_start=9)
+
+    folium.Circle([lat, lon],
+                  fill_color='#de2314', color='black',
+                  radius=300
+                  ).add_to(map_city)
+
+    folium.Marker([lat, lon],
+                  radius=2,
+                  icon=folium.Icon(icon='star-empty', color='blue')).add_to(map_city)
+
     for dollar in dollars:
         folium.Marker(dollar['location']['coordinates'][::-1],
                       radius=2,
@@ -34,4 +44,4 @@ def print_map(df):
                       icon=folium.Icon(icon='cog', color='red')).add_to(map_city)
 
     map_city.save('../output/map_ubication.html')
-    _ = system('firefox ../output/map_ubication.html')
+    _ = system('chrome ../output/map_ubication.html')
