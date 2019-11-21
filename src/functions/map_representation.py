@@ -45,7 +45,7 @@ def print_map(df, the_city):
                           icon=folium.Icon(icon='cog', color='red')).add_to(map_city)
 
     folium.Circle([lat, lon],
-                  fill_color='#de2314', color='black',
+                  fill_color='#de2314', color='blue',
                   radius=300
                   ).add_to(map_city)
 
