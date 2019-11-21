@@ -1,5 +1,5 @@
 
-def get_variables_perefence_1 (pref_1):
+def get_variables_perefence (pref):
 
     query1 = {'raised_dollar':{'$gte':1000000}}
     query2 = {"$or": [
@@ -14,9 +14,9 @@ def get_variables_perefence_1 (pref_1):
                 ]}
     query3 = {'founded_year':{'$gte':2004}}
 
-    if pref_1 == '1':
+    if pref == '1':
         return query1
-    elif pref_1 == '2':
+    elif pref == '2':
         return query2
     else:
         return query3
