@@ -26,7 +26,7 @@ def print_map(df):
     for new in news:
         folium.Marker(new['location']['coordinates'][::-1],
                       radius=2,
-                      icon=folium.Icon(icon='flash', color='yellow')).add_to(map_city)
+                      icon=folium.Icon(icon='flash', color='orange')).add_to(map_city)
 
     for tech in techs:
         folium.Marker(tech['location']['coordinates'][::-1],
