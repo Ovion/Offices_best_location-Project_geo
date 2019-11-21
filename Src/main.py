@@ -7,6 +7,7 @@ import fn_mongo as fm
 import all_comps as ac
 import variables as vble
 import map_representation as mp
+import fn_menu as menu
 
 
 def main():
@@ -22,7 +23,7 @@ def main():
     if yes_or_no == 'y':
         ac.load_all()
 
-    # Display menu preferences
+    menu.display_M1()
     pref_1 = str(input('Enter your first preference by the number: '))
     lst_pref = ['1', '2', '3']
     while pref_1 not in lst_pref:

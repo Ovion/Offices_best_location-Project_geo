@@ -12,7 +12,7 @@ def get_variables_perefence(pref):
         {"category_code": "network_hosting"},
         {"category_code": "photo_video"}
     ]}
-    query3 = {'founded_year': {'$gte': 2004}}
+    query3 = {'founded_year': {'$gte': 2005}}
 
     if pref == '1':
         return query1
