@@ -5,16 +5,7 @@ import functions.fn_menu as menu
 from os import system
 
 
-def print_map(df, the_city):
-    max_rank_office = ''
-    for e in df.offices:
-        if e['city'] == the_city:
-            max_rank_office = e
-            break
-    # max_rank_office = df.iloc[df['total_rank'].idxmax()]['offices']
-    lon = max_rank_office['longitude']
-    lat = max_rank_office['latitude']
-    city = max_rank_office['city']
+def print_map(city, lon, lat):
 
     menu.display_Mmap(city, lon, lat)
 
@@ -25,7 +16,7 @@ def print_map(df, the_city):
     tech_coll = fm.connect_collection('companies', 'tech')
     techs = tech_coll.find({"offices.city": city})
 
-    map_city = folium.Map(location=[lat, lon], zoom_start=17)
+    map_city = folium.Map(location=[lat, lon], zoom_start=16)
 
     for dollar in dollars:
         folium.Marker(dollar['location']['coordinates'][::-1],

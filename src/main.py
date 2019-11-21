@@ -81,7 +81,15 @@ def main():
         if the_city in lst_cities:
             break
 
-    mp.print_map(df_comps, the_city)
+    max_rank_office = {}
+    for e in df_comps.offices:
+        if e['city'] == the_city:
+            max_rank_office = e
+            break
+    lon_city = max_rank_office['longitude']
+    lat_city = max_rank_office['latitude']
+
+    mp.print_map(the_city, lon_city, lat_city)
 
 
 if __name__ == '__main__':
