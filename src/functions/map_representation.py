@@ -5,8 +5,13 @@ import functions.fn_menu as menu
 from os import system
 
 
-def print_map(df):
-    max_rank_office = df.iloc[df['total_rank'].idxmax()]['offices']
+def print_map(df, the_city):
+    max_rank_office = ''
+    for e in df.offices:
+        if e['city'] == the_city:
+            max_rank_office = e
+            break
+    # max_rank_office = df.iloc[df['total_rank'].idxmax()]['offices']
     lon = max_rank_office['longitude']
     lat = max_rank_office['latitude']
     city = max_rank_office['city']

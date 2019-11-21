@@ -63,9 +63,25 @@ def main():
     df_comps['total_rank'] = df_comps.iloc[:, -3]*0.6 + \
         df_comps.iloc[:, -2]*0.3 + df_comps.iloc[:, -1]*0.1
 
-    df_comps = df_comps.sort_values(by=['total_rank'], ascending=False)
+# -------
 
-    mp.print_map(df_comps)
+    df_comps = df_comps.sort_values(by=['total_rank'], ascending=False)
+    lst_cities = []
+    for e in df_comps.offices:
+        if e['city'] not in lst_cities:
+            lst_cities.append(e['city'])
+            if len(lst_cities) == 3:
+                break
+
+    menu.display_Mcity(lst_cities)
+
+    the_city = str(input('Enter THE city: '))
+    while the_city not in lst_cities:
+        the_city = input('Please enter a valid city: ')
+        if the_city in lst_cities:
+            break
+
+    mp.print_map(df_comps, the_city)
 
 
 if __name__ == '__main__':
