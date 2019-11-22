@@ -75,11 +75,19 @@ def load_all():
 
     comps_coll.create_index([("location", pymongo.GEOSPHERE)])
 
-    comps_coll.delete_one({'$and': [{"offices.city": 'Chicago'}, {
-                          "location.coordinates": {'$lte': -120}}]})
-    comps_coll.delete_one({'$and': [{"offices.city": 'Atlanta'}, {
-                          "location.coordinates": {'$lte': -120}}]})
-    comps_coll.delete_one({'$and': [{"offices.city": 'New York City'}, {
-                          "location.coordinates": {'$lte': -120}}]})
+    lst_all = list(comps_coll.find({}))
+
+    for document in lst_all:
+        city = document["offices"]["city"]
+        if city:
+            city = city.upper()
+            comps_coll.update_one(document, {"$set": {"offices.city": city}})
+
+    comps_coll.delete_many({'$and': [{'$or': [{"offices.city": 'CHICAGO'}, {"offices.city": 'ATLANTA'}, {"offices.city": 'NEW YORK CITY'}, {"offices.city": 'SAN FRANCSICO'}, {"offices.city": 'CHANDLER'}, {"offices.city": 'BURLINGAME'}]}, {
+        "location.coordinates": {'$lte': -120}}]})
+
+    #comps_coll.delete_one({'$and': [{"offices.city": 'Chicago'}, {"location.coordinates": {'$lte': -120}}]})
+    #comps_coll.delete_one({'$and': [{"offices.city": 'Atlanta'}, {"location.coordinates": {'$lte': -120}}]})
+    #comps_coll.delete_one({'$and': [{"offices.city": 'New York City'}, {"location.coordinates": {'$lte': -120}}]})
 
     print('Done')

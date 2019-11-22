@@ -1,10 +1,10 @@
 
 from pymongo import MongoClient
 
+client = MongoClient()
+
 
 def connect_collection(database, collection):
-    print('Conecting with mongo client')
-    client = MongoClient()
     db = client[database]
     coll = db[collection]
     return coll
