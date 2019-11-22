@@ -54,7 +54,7 @@ def find_offices_near(collection, lst_loc, query, radio):
 
 def rank(collection, df, query, lst_loc, indx):
     print(f'Ranking the {indx} preference, please wait ...')
-    radio = 1000
+    radio = 2500
     lst_num_offices = []
 
     for i in range(len(df)):

@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+import pymongo
 import functions.apis as api
 import functions.fn_mongo as fm
 import json
@@ -8,7 +9,7 @@ import os
 def load_all():
 
     # import collection to pymongo
-    bashCommand = 'mongoimport --db companies --collection companies --file ../DB/companies.json'
+    bashCommand = 'mongoimport --db companies --collection companies --file ../dbs/companies.json'
     try:
         print('Importing collection to mongoDB ...')
         os.system(bashCommand)
@@ -71,5 +72,14 @@ def load_all():
     for comp in comps_loc:
         value_loc = {'$set': {'location': fm.get_location(comp)}}
         comps_coll.update_one(comp, value_loc)
+
+    comps_coll.create_index([("location", pymongo.GEOSPHERE)])
+
+    comps_coll.delete_one({'$and': [{"offices.city": 'Chicago'}, {
+                          "location.coordinates": {'$lte': -120}}]})
+    comps_coll.delete_one({'$and': [{"offices.city": 'Atlanta'}, {
+                          "location.coordinates": {'$lte': -120}}]})
+    comps_coll.delete_one({'$and': [{"offices.city": 'New York City'}, {
+                          "location.coordinates": {'$lte': -120}}]})
 
     print('Done')

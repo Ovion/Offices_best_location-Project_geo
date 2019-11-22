@@ -7,6 +7,9 @@ import functions.variables as vble
 import functions.map_representation as mp
 import functions.fn_menu as menu
 import collections_mdb.all_comps as ac
+import collections_mdb.million_comps as mc
+import collections_mdb.new_comps as nc
+import collections_mdb.tech_comps as tc
 
 
 def main():
@@ -21,6 +24,9 @@ def main():
 
     if yes_or_no == 'y':
         ac.load_all()
+        mc.load_dollar()
+        nc.load_new()
+        tc.load_tech()
 
     menu.display_M1()
     pref_1 = str(input('Enter your first preference by the number: '))
